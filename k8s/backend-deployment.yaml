@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ares-backend
+  namespace: devops-assignment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ares-backend
+  template:
+    metadata:
+      labels:
+        app: ares-backend
+    spec:
+      containers:
+      - name: ares-backend
+        image: flask-backend:v1
+        imagePullPolicy: Never
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+
+        ports:
+        - containerPort: 8000

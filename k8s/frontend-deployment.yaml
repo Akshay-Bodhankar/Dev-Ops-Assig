@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ares-frontend
+  namespace: devops-assignment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ares-frontend
+  template:
+    metadata:
+      labels:
+        app: ares-frontend
+    spec:
+      containers:
+      - name: ares-frontend
+        image: express-frontend:v1
+        imagePullPolicy: Never
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+        env:
+        - name: BACKEND_URL
+          value: "http://ares-backend-service:8000/api"
+        ports:
+        - containerPort: 3000
