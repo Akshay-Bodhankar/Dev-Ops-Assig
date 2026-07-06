@@ -8,6 +8,8 @@ ADD . /app
 
 WORKDIR /app
 
-ENTRYPOINT [ "python" ]
+EXPOSE 8000
+
+ENTRYPOINT ["python"]
 
 CMD ["app.py"]
